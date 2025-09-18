@@ -419,7 +419,7 @@ if (count($arhivirani_predmeti)) {
         
         // Make Klasa badge clickable to open details modal
         print '<td class="seup-table-td">';
-        print '<button class="seup-badge seup-badge-primary seup-klasa-link clickable-klasa" data-predmet-id="' . $predmet->ID_predmeta . '" title="Kliknite za detalje">';
+        print '<button class="seup-badge seup-badge-primary seup-klasa-link" data-predmet-id="' . $predmet->ID_predmeta . '" title="Kliknite za detalje">';
         print $predmet->klasa_format;
         print '</button>';
         print '</td>';
@@ -801,9 +801,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Event listeners for clickable elements
-    document.querySelectorAll('.clickable-klasa, .seup-btn-view').forEach(element => {
+    document.querySelectorAll('.seup-badge-primary, .seup-btn-view').forEach(element => {
         element.addEventListener('click', function() {
-            const predmetId = this.dataset.predmetId;
+            const predmetId = this.dataset.predmetId || this.closest('tr').dataset.id;
             openDetailsModal(predmetId);
         });
     });
